@@ -1,18 +1,50 @@
+import { useState } from "react";
 
+const Form = () => {
+  const [formdata, setFormdata] = useState({
+    name: "",
+    email: "",
+  });
+  function handleChange(e) {
+    setFormdata({
+      ...formdata,
+      [e.target.name]: e.target.value,
+    });
+  }
 
-const Form  = () => {
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(formdata);
+  }
   return (
     <>
-    {/* <h1>Login Form</h1>
-    <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Enter Username" />
-        <br />
-        <input type="text" placeholder="Enter Password" />
-        <br />
-        <button type="submit" Value="Submit">Submit</button>
-    </form> */}
+      <form onSubmit={handleSubmit}>
+        <h1>Form</h1>
+        <div>
+          <label>Name</label>
+          <input
+            type="text"
+            placeholder="Enter Your Name"
+            name="name"
+            value={formdata.name}
+            onChange={handleChange}
+            autoComplete="off"
+          />
+        </div>
+        <div>
+          <label>Password</label>
+          <input
+            type="text"
+            placeholder="Enter your password"
+            name="password"
+            value={formdata.password}
+            onChange={handleChange}
+          />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
     </>
-  )
-}
+  );
+};
 
-export default Form 
+export default Form;
